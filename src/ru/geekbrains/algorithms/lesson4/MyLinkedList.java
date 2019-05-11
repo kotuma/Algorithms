@@ -2,13 +2,14 @@ package ru.geekbrains.algorithms.lesson4;
 
 import java.util.NoSuchElementException;
 
-public class MyLinkedLinks<Item> {
+public class MyLinkedList<Item> {
     private class Node {
         Item item;
         Node next;
         Node prev;
 
-        public Node(Item item, Node next) {
+        public Node(Node prev, Item item, Node next) {
+            this.prev = prev;
             this.item = item;
             this.next = next;
         }
@@ -39,9 +40,12 @@ public class MyLinkedLinks<Item> {
 
     public void addFirst(Item item) {
         Node oldFirst = first;
-        first = new Node(item, oldFirst);
+        first = new Node(null, item, oldFirst);
         if (isEmpty()) {
             last = first;
+        }
+        else {
+            oldFirst.prev = first;
         }
         size++;
     }
@@ -57,6 +61,10 @@ public class MyLinkedLinks<Item> {
         if (isEmpty()) {
             last = first;
         }
+        else {
+            second.prev = null;
+        }
+
         return item;
     }
 
@@ -67,7 +75,7 @@ public class MyLinkedLinks<Item> {
 
     public void addLast(Item item) {
         Node oldLast = last;
-        last = new Node(item, null);
+        last = new Node(oldLast, item, null);
         if (isEmpty()) {
             first = last;
         }
@@ -80,6 +88,23 @@ public class MyLinkedLinks<Item> {
     public Item removeLast() {
         isEmptyException();
         Item item = last.item;
-        previous =
+        Node prev = last.prev;
+        last.prev = null;
+        last = prev;
+        size--;
+        if (isEmpty()) {
+            first = null
+        }
+        else {
+            last.next = null;
+        }
+        return item;
+    }
+
+    public Item get(int index) {
+        if (index < 0 || index > size - 1) {
+            throw new IndexOutOfBoundsException()
+        }
+        Node current
     }
 }
