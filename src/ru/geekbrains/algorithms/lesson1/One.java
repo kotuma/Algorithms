@@ -1,5 +1,13 @@
 package ru.geekbrains.algorithms.lesson1;
 
 public class One {
-    public int x = 1;
+    private int x = 1;
+
+    public One() {
+        x = 111;
+    }
+
+    public int getX() {
+        return x;
+    }
 }
