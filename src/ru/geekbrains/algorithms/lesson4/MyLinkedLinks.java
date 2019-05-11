@@ -80,6 +80,6 @@ public class MyLinkedLinks<Item> {
     public Item removeLast() {
         isEmptyException();
         Item item = last.item;
-        previous = ?
+        previous =
     }
 }
