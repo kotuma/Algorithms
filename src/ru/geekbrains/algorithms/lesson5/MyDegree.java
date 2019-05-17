@@ -22,6 +22,23 @@ public class MyDegree {
             n++;
         }
         return res;
-
     }
+
+    public static int degreeRec(int a, int degree){
+        if (degree == 0) {
+            return 1;
+        }
+        if (degree == 1) {
+            return a;
+        }
+
+        if (degree % 2 == 1) {
+            return degreeRec(a, degree - 1) * a;
+        }
+        else {
+            int half = degreeRec(a, degree / 2);
+            return half * half;
+        }
+    }
+
 }
